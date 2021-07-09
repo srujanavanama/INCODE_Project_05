@@ -4,7 +4,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const axios = require('axios');
-
+const app = express();
+const session = require('express-session')
 
 // router files
 const indexRouter = require('./routes/index');
@@ -14,11 +15,8 @@ const signupRouter = require('./routes/signup.js')
 
 const PORT = process.env.PORT || 3000;
 
-const app = express();
 
 // session setup
-const session = require('express-session')
-
 app.use(session({
   cookie: {
     maxAge: 1000 * 60 * 60, // 1 hour
