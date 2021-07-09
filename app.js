@@ -5,8 +5,12 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const axios = require('axios');
 
+
+// router files
 const indexRouter = require('./routes/index');
 const apiRouter = require('./routes/api')
+const loginRouter = require('./routes/login.js')
+const signupRouter = require('./routes/signup.js')
 
 const PORT = process.env.PORT || 3000;
 
@@ -23,8 +27,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// routers
 app.use('/', indexRouter);
 app.use('/api', apiRouter);
+app.use('/login', loginRouter);
+app.use('/signup', signupRouter);
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3' 
 
