@@ -16,19 +16,6 @@ const signupRouter = require('./routes/signup.js')
 const PORT = process.env.PORT || 3000;
 
 
-// session setup
-app.use(session({
-  cookie: {
-    maxAge: 1000 * 60 * 60, // 1 hour
-    // secure: false // must be true if served via HTTPS & false if served via HTTP
-  },
-  name: 'cookie',
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false
-}))
-
-
 require('dotenv').config();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -46,6 +33,18 @@ app.use('/', indexRouter);
 app.use('/api', apiRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
+
+// session setup
+app.use(session({
+  cookie: {
+    maxAge: 1000 * 60 * 60, // 1 hour
+    // secure: false // must be true if served via HTTPS & false if served via HTTP
+  },
+  name: 'cookie',
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false
+}))
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3' 
 

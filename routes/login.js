@@ -22,15 +22,15 @@ router.post('/', redirectToHome, (req, res) => {
 
   // does user exist?
   db.oneOrNone('SELECT * FROM users WHERE email = $1', [req.body.email.toLowerCase()])
-  .then((existingUser) => {
-    // if not, return error
-    if (!existingUser) {
-      return res.redirect('/login?message=Incorrect%20login%20details.')
-    }
+    .then((existingUser) => {
+      // if not, return error
+      if (!existingUser) {
+        return res.redirect('/login?message=Incorrect%20login%20details.')
+      }
 
-    const hash = existingUser.passwords
-    // if so, does password match user password?
-    bcrypt.compare(req.body.psw, hash, function(err, result) {
+      const hash = existingUser.passwords
+      // if so, does password match user password?
+      bcrypt.compare(req.body.psw, hash, function(err, result) {
       if (result) {
         // if successful, create session and redirect
         console.log(req.session)
