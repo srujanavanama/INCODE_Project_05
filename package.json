@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "nodemon app.js",
-    "start": "node ./bin/www",
+    "start": "nodemon ./bin/www",
     "create-db": "psql -U postgres -h localhost -f sql/create-database.sql",
     "create-tables": "psql -U postgres -h localhost -d moviedb -f sql/create-tables.sql",
     "seed-tables": "psql -U postgres -h localhost -d moviedb -f sql/seed-tables.sql"
