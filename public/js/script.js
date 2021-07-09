@@ -43,9 +43,13 @@ const appendMovie = moviesList => {
     moviesList.forEach(movie => {
         const posterImage = movie.poster_path
         const movieTitle = movie.original_title;
+        const movieId = movie.id;
         const movieEntry = $("<div>").append(`<img src ="${image_url}${posterImage}" alt = ${movieTitle}>`)
-        const titleDiv = $("<div>").append(`${movieTitle}`);
+        const titleDiv = $("<div>")
         movieEntry.append(titleDiv);
+        const movieLink = `/api/movie/${movieId}`;
+        const movieRef = $("<a>").append(`${movieTitle}`).attr("href", movieLink);
+        movieEntry.append(movieRef);
         $("#movies").append(movieEntry)
     })
 }
