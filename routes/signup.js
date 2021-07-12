@@ -3,12 +3,11 @@ const router = express.Router();
 const db = require("../database");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
-const app = express();
 const { check, validationResult, body } = require("express-validator");
 
 // middleware for users that are already logged in
 const loggedInMessage = (req, res, next) => {
-  if (req.session.userId) {
+  if (req.session.loggedin) {
     res.render("pages/signup", {
       message: req.query.message
         ? req.query.message
@@ -19,13 +18,12 @@ const loggedInMessage = (req, res, next) => {
   }
 };
 
-router.get("/", loggedInMessage, (req, res) => {
+router.get('/', loggedInMessage, (req, res) => {
   res.render("pages/signup", {
-    message: req.query.message,
+    message: req.query.message
   });
 });
 
-//Ant
 // validate the fields
 
 router.post(
@@ -69,7 +67,7 @@ router.post(
     if (!errors.isEmpty()) {
       // return res.status(422).jsonp(errors.array())
       const alert = errors.array();
-      res.render("pages/signup", {
+      res.render("/signup", {
         alert,
       });
     }
@@ -119,11 +117,5 @@ router.post(
       });
   }
 );
-
-router.get("/success", (req, res) => {
-  res.render("pages/signup-success", {
-    message: req.query.message,
-  });
-});
 
 module.exports = router;

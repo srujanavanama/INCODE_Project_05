@@ -5,7 +5,13 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const axios = require('axios');
 const app = express();
+const expressLayouts = require('express-ejs-layouts')
 const session = require('express-session')
+
+//set templating engine
+app.use(expressLayouts);
+app.set('layout', './layouts/layout')
+app.set('view engine','ejs')
 
 // router files
 const indexRouter = require('./routes/index');
@@ -34,17 +40,7 @@ app.use('/api', apiRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
 
-// session setup
-app.use(session({
-  cookie: {
-    maxAge: 1000 * 60 * 60, // 1 hour
-    // secure: false // must be true if served via HTTPS & false if served via HTTP
-  },
-  name: 'cookie',
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false
-}))
+
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3' 
 
@@ -61,11 +57,23 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('pages/error');
 });
 
-app.listen(PORT, () => {
-  console.log(`App listening at ${PORT}`)
-})
+// app.listen(PORT, () => {
+//   console.log(`App listening at ${PORT}`)
+// })
+
+// session setup
+app.use(session({
+  cookie: {
+    maxAge: 1000 * 60 * 60, // 1 hour
+    // secure: false // must be true if served via HTTPS & false if served via HTTP
+  },
+  name: 'cookie',
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false
+}))
 
 module.exports = app;

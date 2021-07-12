@@ -18,5 +18,7 @@ const redirectToHome = (req, res, next) => {
     }
 }
 
+
+
   
 module.exports = { redirectToLogin, redirectToHome }

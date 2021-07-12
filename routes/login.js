@@ -2,18 +2,16 @@ const express = require('express')
 const router = express.Router()
 const db = require('../database')
 const bcrypt = require('bcrypt')
-const { redirectToHome } = require('../middleware')
 
-// get request - first redirectToHome is hit and if the user is logged in, 
 // the login page is rendered
-router.get('/', redirectToHome, (req, res) => {
+router.get('/', (req, res) => {
   res.render('pages/login', {
     message: req.query.message
   })
 })
 
 
-router.post('/', redirectToHome, (req, res) => {
+router.post('/', (req, res) => {
   // Check if the user has entered both email and password
   // here we are checking if the boxes are empty
   if (req.body.email === '' || req.body.psw === '') {
@@ -30,13 +28,14 @@ router.post('/', redirectToHome, (req, res) => {
 
       const hash = existingUser.passwords
       // if so, does password match user password?
-      bcrypt.compare(req.body.psw, hash, function(err, result) {
+      bcrypt.compare(req.body.psw, hash, (err, result) => {
       if (result) {
         // if successful, create session and redirect
         console.log(req.session)
         req.session.userId = existingUser.id
         console.log(req.session)
-        res.redirect('/')
+        req.session.loggedin = true
+        // res.redirect('/')
       } else {
         console.log(err)
         res.redirect('/login?message=Incorrect%20login%20details.')
@@ -49,4 +48,4 @@ router.post('/', redirectToHome, (req, res) => {
   })
 })
 
-module.exports = router
+module.exports = router;
