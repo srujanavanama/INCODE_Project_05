@@ -1,8 +1,10 @@
 <h1>Login</h1>
 
-<% if(locals.logout){ %>
-<%=  logout %>
-<%}%>
+<% if (message) { %>
+<%= message %>
+<% } %>
+
+<% message %>
 
 <form action="/login" method="POST">  
     <div class="container">

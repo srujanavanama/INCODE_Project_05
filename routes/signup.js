@@ -55,9 +55,8 @@ router.post(
   (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      // return res.status(422).jsonp(errors.array())
       const alert = errors.array();
-      res.render("/signup", {
+      res.render("pages/signup", {
         alert,
       });
     }
@@ -92,7 +91,7 @@ router.post(
             ]
           )
             .then(() => {
-              res.redirect("/signup/success?message=Signup%20success.");
+              res.redirect("/login?message=Signup%20success.%20Login?");
             })
             .catch((err) => {
               // error if user hasn't been inserted into the db
