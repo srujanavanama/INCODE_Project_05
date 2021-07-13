@@ -8,6 +8,7 @@ const app = express();
 const expressLayouts = require('express-ejs-layouts')
 const session = require('express-session')
 
+
 //set templating engine
 app.use(expressLayouts);
 app.set('layout', './layouts/layout')
@@ -27,6 +28,18 @@ require('dotenv').config();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// session setup
+app.use(session({
+  cookie: {
+    maxAge: 1000 * 60 * 60, // 1 hour
+    // secure: false // must be true if served via HTTPS & false if served via HTTP
+  },
+  name: 'cookie',
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false
+}))
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -45,9 +58,9 @@ app.use('/signup', signupRouter);
 axios.defaults.baseURL = 'https://api.themoviedb.org/3' 
 
 // catch 404 and forward to error handler
-// app.use(function(req, res, next) {
-//   next(createError(404));
-// });
+app.use(function(req, res, next) {
+  next(createError(404));
+});
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -64,16 +77,6 @@ app.use(function(err, req, res, next) {
 //   console.log(`App listening at ${PORT}`)
 // })
 
-// session setup
-app.use(session({
-  cookie: {
-    maxAge: 1000 * 60 * 60, // 1 hour
-    // secure: false // must be true if served via HTTPS & false if served via HTTP
-  },
-  name: 'cookie',
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false
-}))
+
 
 module.exports = app;

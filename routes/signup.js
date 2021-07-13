@@ -7,7 +7,8 @@ const { check, validationResult, body } = require("express-validator");
 const { redirectToHome } = require('../middleware')
 
 
-router.get('/', redirectToHome, (req, res) => {
+router.get('/', redirectToHome, 
+  (req, res) => {
   res.render("pages/signup", {
     message: req.query.message
   });
@@ -77,17 +78,17 @@ router.post(
             lastname: req.body.lastName,
             firstname: req.body.firstName,
             email: req.body.email.toLowerCase(),
-            passwords: bcrypt.hashSync(req.body.psw, saltRounds),
+            password: bcrypt.hashSync(req.body.psw, saltRounds),
           };
           console.log(newUser);
 
           db.none(
-            "INSERT INTO users(lastname, firstname, email, passwords) VALUES ($1, $2, $3, $4);",
+            "INSERT INTO users(lastname, firstname, email, password) VALUES ($1, $2, $3, $4);",
             [
               newUser.lastname,
               newUser.firstname,
               newUser.email,
-              newUser.passwords,
+              newUser.password,
             ]
           )
             .then(() => {

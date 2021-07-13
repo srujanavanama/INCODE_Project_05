@@ -26,14 +26,14 @@ router.post('/', (req, res) => {
         return res.redirect('/login?message=Incorrect%20login%20details.')
       }
 
-      const hash = existingUser.passwords
+      const hash = existingUser.password
       // if so, does password match user password?
       bcrypt.compare(req.body.psw, hash, (err, result) => {
       if (result) {
         // if successful, create session and redirect
         console.log(req.session)
-        req.session.userId = existingUser.id
-        console.log(req.session)
+        req.session.userId = existingUser.user_id
+        console.log(existingUser)
         // req.session.loggedin = true
         res.redirect('/')
       } else {
