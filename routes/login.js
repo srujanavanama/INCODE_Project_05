@@ -34,8 +34,8 @@ router.post('/', (req, res) => {
         console.log(req.session)
         req.session.userId = existingUser.id
         console.log(req.session)
-        req.session.loggedin = true
-        // res.redirect('/')
+        // req.session.loggedin = true
+        res.redirect('/')
       } else {
         console.log(err)
         res.redirect('/login?message=Incorrect%20login%20details.')

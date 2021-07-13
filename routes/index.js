@@ -4,8 +4,7 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('pages/index', { 
-    title: 'The Movie DB',
-    id:req.session.userId 
+    title: 'The Movie DB'
   });
 });
 

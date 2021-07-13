@@ -4,21 +4,10 @@ const db = require("../database");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const { check, validationResult, body } = require("express-validator");
+const { redirectToHome } = require('../middleware')
 
-// middleware for users that are already logged in
-const loggedInMessage = (req, res, next) => {
-  if (req.session.loggedin) {
-    res.render("pages/signup", {
-      message: req.query.message
-        ? req.query.message
-        : "You are already logged in, are you sure you want to sign up?",
-    });
-  } else {
-    next();
-  }
-};
 
-router.get('/', loggedInMessage, (req, res) => {
+router.get('/', redirectToHome, (req, res) => {
   res.render("pages/signup", {
     message: req.query.message
   });

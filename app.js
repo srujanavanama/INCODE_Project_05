@@ -45,9 +45,9 @@ app.use('/signup', signupRouter);
 axios.defaults.baseURL = 'https://api.themoviedb.org/3' 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+// app.use(function(req, res, next) {
+//   next(createError(404));
+// });
 
 // error handler
 app.use(function(err, req, res, next) {
