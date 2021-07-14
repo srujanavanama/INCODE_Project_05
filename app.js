@@ -19,6 +19,7 @@ const indexRouter = require('./routes/index');
 const apiRouter = require('./routes/api')
 const loginRouter = require('./routes/login.js')
 const signupRouter = require('./routes/signup.js')
+const detailsRouter = require('./routes/details.js')
 
 const PORT = process.env.PORT || 3000;
 
@@ -50,6 +51,7 @@ app.use('/', indexRouter);
 app.use('/api', apiRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
+app.use('/details', detailsRouter);
 
 
 
