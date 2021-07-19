@@ -4,14 +4,33 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/34140e5df6.js" crossorigin="anonymous"></script>
     <script src="./js/script.js" defer></script>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <select name="genreList" id="genreList">
-      <option value=""> Select a Genre</option>
-    </select>
+    <div class="flex nav">
+      <div flex-1>
+        <h1><%= title %></h1>
+      </div>
+      <div class="flex-2">
+        <a href="#">login</a>
+      </div>
+      <div class="flex-3">
+        <a href="#">signUp</a>
+      </div>
+    </div>
+    <marquee direction="right"><p>Welcome to <%= title %></p></marquee> 
+    <div class="search">
+      <div class="search-1">
+        <input placeholder="Search..." id="movie_search" />
+        <i class="fas fa-search fa-2x" ></i>
+      </div>
+      <div class="search2">
+        <select name="genreList" id="genreList">
+          <option value=""> Select a Genre</option>
+        </select>
+      </div>
+    </div>
     <div id="movies"></div>
   </body>
 </html>
