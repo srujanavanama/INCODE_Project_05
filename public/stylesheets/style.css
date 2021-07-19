@@ -1,8 +1,292 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+* {
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-a {
-  color: #00B7FF;
+html{
+  background-color: rgba(248, 233, 233, 0.623);
+  /* background-image: url(./assets/movie.jpg); */
+  /* filter: blur(1px); */
+  font-family: sans-serif;
+  font-size: 20px;
+
+
+.nav{
+  display:flex;
+  height: 100px;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: lightcoral;
+  
+}
+
+.flex-2{
+  margin-left: auto;
+}
+
+.nav a{
+  text-decoration: none;
+  margin-right:30px;
+  font-size: 25px;
+  color: black;
+}
+
+p{
+  font-size:30px;
+}
+
+#movies {
+  display: flex;
+  align-items: center;
+  overflow-x :scroll;
+  max-height: 450px;
+  box-sizing: border-box;
+  
+ 
+  
+}
+#movies img{
+  height: 300px;
+  padding:20px;
+}
+
+#movies a{
+  text-decoration: none;
+  font: size 20px;
+  margin-left:20%;
+  color: brown;
+}
+
+.search{
+  display:flex;
+  align-items: center;
+  flex-direction: column;
+  height:120px;
+  justify-content: space-between;
+}
+
+.search input{
+  border: 2px solid black;
+  margin-left:20px;
+  height:50px;
+  width:90%;
+  font-size: 20px;
+  text-align: center;
+
+  
+}
+
+.search select{
+  border: 2px solid black;
+  height: 40px;
+}
+
+select option:hover{
+  background-color: lightcoral;
+}
+
+
+.search-1{
+  display: flex;
+  justify-content: space-between;
+  width:50%;
+  align-items: center;
+}
+
+/* login signp */
+
+header{
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+
+.flex{
+  display: flex;
+}
+
+.flex.flex-items{
+  width: 90%;
+  height:80px;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  padding:10px;
+
+  
+
+}
+
+/* input{
+  width:100%;
+} */
+.flex.login{
+  border: 1px solid #000;
+  width:30%;
+  align-items: center;
+  margin: 150px auto;
+  height:400px; 
+  flex-direction: column;
+  justify-content: space-around;
+  border-radius:25px;
+  position: relative;
+}
+input{
+  font: bold;
+  font-size: 120% ;
+  color:black;
+
+}
+input, .btn{
+  width:90%;
+  height: 100%;
+}
+.flex.login .btn{
+  transition-duration: 2s;
+  font-size: 120%;
+  background-color: lightcoral;
+}
+
+.flex.flex-items.btn1{
+  justify-content: flex-end;
+}
+
+.btn:hover{
+  border:2px solid blue;
+  background-color: rgb(4, 3, 56);
+  cursor: pointer;
+}
+
+i.fa-check-circle, i.fa-exclamation-circle{
+  visibility: hidden;
+  position:absolute;
+  right: 12.5px;
+}
+
+small{
+  visibility: hidden;
+  position:absolute;
+  bottom:-7px;
+  left:50px;
+}
+
+.flex-items.success input{
+  border: 2px solid green;
+  
+}
+
+.flex-items.success i.fa-check-circle{
+  visibility: visible;
+  color:green;
+}
+
+.flex-items.failure input{
+  border: 2px solid red;
+}
+
+.flex-items.failure i.fa-exclamation-circle{
+  visibility: visible;
+  color:red;
+}
+
+.flex-items.failure small{
+  visibility: visible;
+  color:red;
+}
+
+i.fa-user-circle{
+  position:absolute;
+  left:48.5%;
+  top:130px;
+  
+}
+
+
+/*signup*/
+
+h2{
+  margin-bottom: -80px;;
+}
+
+.flex.signup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width:50%;
+  margin: 70px auto;
+}
+.form{
+  width:100%;
+}
+
+.form-control{
+  margin-bottom: 10px;
+  position:relative;
+  padding: 10px;
+  
+
+}
+
+.form-control input{
+  display: block;
+  width:100%;
+  height:45px;
+  background-color: rgb(252, 248, 248);
+  color: rgb(13, 14, 13);
+  font: inherit;
+  font-size: 100%;
+
+}
+
+.form-control.success input{
+  border-color: rgb(11, 243, 11);
+}
+
+.form-control.error input {
+  border-color: #e74c3c;
+}
+
+.form-control.success i.fa-check-circle{
+  visibility: visible;
+  color: rgb(11, 243, 11);
+}
+
+.form-control.error i.fa-exclamation-circle{
+  visibility: visible;
+  color: #e74c3c;
+}
+
+.form-control.error small{
+  visibility: visible;
+  color: #e74c3c;
+}
+
+.form-control i{
+  position: absolute;
+  right:15px;
+  top:45px;
+  visibility: hidden;
+  
+ 
+}
+
+.form-control small{
+  position: absolute;
+  visibility: hidden;
+  
+}
+
+.form-control .btn {
+  background-color: lightcoral;
+  width: 100%;
+  margin-bottom:10px;
+  height: 40px;
+  transition-duration: 2s;
+} 
+
+.form-control .btn:hover{
+  border:2px solid blue;
+  background-color: rgb(227, 227, 236);
+  cursor: pointer;
 }
